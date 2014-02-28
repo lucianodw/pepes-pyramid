@@ -1,0 +1,101 @@
+<div ng-show="appActive">
+  <!-- App Navigation Row -->
+  <div class="row clearfix">
+    <div class="col-xs-2 col-md-2 pull-left"><a ng-href="#/" class="glyphicon glyphicon-arrow-left"></a></div>
+    <div class="col-xs-8 col-md-8  pull-center">
+      <p class="chip-display">{{chipsRemaining}} Chips Left</p>
+    </div>
+    <div class="col-xs-2 col-md-2 pull-right"><i class="glyphicon glyphicon-refresh pull-right" ng-click="chooseTurn()"></i></div>
+  </div>
+
+
+  <!-- Player Row -->
+  <div class="row player-row clearfix">
+    <div class="col-md-6 col-xs-6 pull-left">
+      <p class="player-display ng-class: player.one.active ? 'active' : 'not-active'">{{player.one.name}}</p>
+    </div>
+    <div class="col-md-6 col-xs-6 pull-right">
+      <p class="player-display ng-class: player.two.active ? 'active' : 'not-active'">{{player.two.name = (settings.computerMode) ? 'Pepe' : player.two.name}}</p>
+    </div>
+  </div>
+
+  <!-- Game Board Row -->
+  <div class="jumbotron clearfix">
+    <div class="game-board col-md-10 col-xs-10">
+
+      <div class="row game-row clearfix r1" data-index="0">
+        <div class="col-md-1 game-box box-{{$index}}" ng-repeat="chip in board.chips[0]">
+          <a pep class="chip chip-{{$index}}" data-index="{{$index}}"></a>
+        </div>
+      </div>
+
+      <div class="row game-row clearfix r2" data-index="1">
+        <div class="col-md-1 game-box box-{{$index}} col-xs-2" ng-repeat="chip in board.chips[1]">
+          <a pep class="chip chip-{{$index}}"  data-index="{{$index}}"></a>
+        </div>
+      </div>
+
+      <div class="row game-row clearfix r3" data-index="2">
+        <div class="col-md-1 game-box box-{{$index}} col-xs-2" ng-repeat="chip in board.chips[2]">
+          <a pep class="chip chip-{{$index}}"  data-index="{{$index}}"></a>
+        </div>
+      </div>
+
+      <div class="row game-row clearfix r4" data-index="3">
+        <div class="col-md-1 game-box box-{{$index}} col-xs-2" ng-repeat="chip in board.chips[3]">
+          <a pep class="chip chip-{{$index}}"  data-index="{{$index}}"></a>
+        </div>
+      </div>
+
+    </div>
+    <div class="droppable d2 col-md-2 col-xs-2"></div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+    <!-- Game Over Screen -->
+    <div class="overlay" ng-show="screen.gameOver"></div>
+    <div class="game-over pull-center" ng-show="screen.gameOver">
+      <div class="row ">
+        <h3>Game Over!</h3>
+      </div>
+      <div class="row">
+        <p>{{player.winner}} Wins!</p>
+      </div>
+      <div class="row"> 
+        <button class="btn btn-lg btn-success" ng-click="chooseTurn()"><i class="glyphicon glyphicon-refresh"></i> Replay</button>
+      </div>
+     
+    </div>
+
+    <!-- Go First Screen -->
+    <div class="overlay" ng-show="screen.goFirst"></div>
+    <div class="game-over pull-center" ng-show="screen.goFirst">
+      <div class="row ">
+        <h3>{{turnText}}</h3>
+      </div>
+      <div class="row"> 
+        <button class="btn btn-lg btn-success" ng-click="goFirst()">{{turnButton1}}</button> <button class="btn btn-lg btn-success" ng-click="goSecond()">{{turnButton2}}</button>
+      </div>
+     
+    </div>
+
+    <!-- Computers Turn Screen -->
+    <div class="overlay" ng-show="screen.computerTurn"></div>
+    <div class="game-over comp-turn pull-center" ng-show="screen.computerTurn">
+      <div class="row ">
+        <h3>Pepe's Turn</h3>
+      </div>
+      <div class="row">
+        <p>I'm Thinking...</p>
+      </div>
+      <div class="row">
+        <div class="progress progress-striped active">
+          <div class="progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+          </div>
+        </div>
