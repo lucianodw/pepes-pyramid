@@ -1,0 +1,75 @@
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+/* Space out content a bit */
+html {
+    height:100%;
+}
+
+body {
+    padding-top: 5px;
+    padding-bottom: 20px;
+    background: #E0CCA9;
+    position: relative;
+    height:100%;
+}
+
+.glyphicon {
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+.glyphicon-refresh {
+    &:hover {
+        color: #F46767;
+    }
+}
+
+.glyphicon-arrow-left {
+    &:hover {
+        color: #4C859F;
+        text-decoration: none;
+    }
+}
+
+.btn-group-lg > .btn, .btn-lg {
+    max-width: 300px;
+    width: 100%;
+}
+
+.jumbotron {
+    text-align: center;
+    
+    background-color: transparent;
+}
+
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .container {
+        max-width: 730px;
+    }
+
+    .jumbotron {
+        border-bottom: 0;
+    }
+}
+
+/* Responsive: Mobile */
+@media screen and (max-width: 768px) {
+
+    .btn {
+        width: 80%;
+    }
+}
+
+/* Responsive: Mobile */
+@media screen and (max-width: 360px) {
+
+}
+
+/* Responsive: Mobile */
+@media screen and (max-width: 300px) {
+
+}
