@@ -74,13 +74,46 @@ angular.module('pyramidApp')
       if(turn.row === undefined){
         turn = $scope.getRandTurn();
       }
-
+      console.log('conputers turn');
       // Set Chips to False 
       for(var x = 0; x < turn.chip; x++){
         $scope.board.chips[turn.row][x].chip = false;
-      };
+      }
+       //turn.row is row while turn.chip is column
+         //for loop has to be imposed as well so other elements may move as well .
 
-      $scope.removeChips(turn.row, true);
+          console.log(turn.chip+"chip and row is "+turn.row+"x is "+x);
+          
+          if(turn.row==0){
+            var lengthOfRow=1;
+          }else{
+            var lengthOfRow=turn.row*2;
+          }
+          
+          var xx=lengthOfRow-turn.chip;
+          //xx++;
+          console.log(xx);
+         //Finding abosulte position of chips with offest method 
+          var position = $('.game-row[data-index='+turn.row+'] .chip-' + xx).offset();
+          //Findind absolute positoin of dropable 
+          var positionOfDropable = $('.droppable').offset();
+          //Absoulte position difference between starting and end positions  
+          var AbsoulteDifference =positionOfDropable.left-position.left;
+          var temp=turn;
+          
+          $('.game-row[data-index='+turn.row+'] .chip-'+xx ).animate({
+            left: AbsoulteDifference+ 100,
+            opacity: 1
+          }, 1000, "linear", function() {
+              //now play opacity transition 
+              console.log(xx+"chip and row is "+turn.row);
+            //   $('.game-row[data-index='+temp.row+'] .chip-' + xx).animate({opacity: 0},5000);
+                //moved from this has to be restored 
+               $scope.removeChips(turn.row, true);
+          });
+
+       //this has to be restored 
+      
     }
 
 
