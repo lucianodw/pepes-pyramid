@@ -12,6 +12,10 @@ angular.module('pyramidApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/pregame', {
+        templateUrl: 'views/pregame.html',
+        controller: 'PregameCtrl'
+      })
       .when('/', {
         templateUrl: 'views/menu.html',
         controller: 'MenuCtrl'

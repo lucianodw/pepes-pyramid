@@ -3,16 +3,28 @@
 
 
 angular.module('pyramidApp')
-  .controller('MenuCtrl', function ($scope, $rootScope, $location) {
+  .controller('MenuCtrl', function ($scope, $rootScope, $location, $timeout) {
       
       // Initialize Global Variables
-      $rootScope.gameMode = false; 
       $rootScope.appActive = true;
       
+      // Pick Character
+      // $scope.pickCharacter = function(isComputer) {
+      //     $rootScope.gameMode = isComputer;
+      // }
+
       // Starts The Game
-      $scope.startGame = function(computer){
-        $rootScope.gameMode = computer;
-        $location.path('/game');
+      $scope.startGame = function(isComputer){
+        $rootScope.gameMode = isComputer;
+        $scope.animate.menu=false;
+
+        $timeout(function(){
+          $location.path('/pregame');
+        }, 800);
+      }
+
+      $scope.animate = {
+        menu: true
       }
 
   });

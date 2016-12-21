@@ -5,11 +5,17 @@ angular.module('pyramidApp')
      var player = {
         one : {
           active: true,
-          name: 'Player 1'
+          name: 'Player 1',
+          character: 'default',
+          talk: 'No one can beat me!',
+          winner: false
         },
         two : {
           active: false,
-          name: 'Player 2'
+          name: 'Player 2',
+          character: 'default',
+          talk: ' I will take you down!',
+          winner: false
         },
         winner: ''
       }

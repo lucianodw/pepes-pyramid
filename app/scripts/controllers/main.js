@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('pyramidApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $location, Board, Player) {
+  .controller('MainCtrl', function ($scope, $rootScope, $location, $timeout, Board, Player) {
 
 
 // ---------------- TURN SELECTION ----------------
@@ -25,36 +25,42 @@ angular.module('pyramidApp')
 
 
 // ---------------- TURN ACTIVATED ----------------
-  	$scope.removeChips = function(row, digest) {
+  	$scope.removeChips = function(row, chipIndex, digest) {
+      // Remove Chips
+            if(arguments[0]) {
+                $scope.board.chips[row].splice(chipIndex);
+            }
 
       // Switches Active Player
   		$scope.player.one.active = !$scope.player.one.active;
   		$scope.player.two.active = !$scope.player.two.active;
 
-      // New Row - Filters out all 'false' chips
-  		$scope.board.chips[row] = _.filter($scope.board.chips[row] , 
-  			function(obj){ return obj.chip === true; }
-  		);
-
       // Set Chip Count
-   		$scope.chipsRemaining = $scope.getChipTotal();
+      $scope.chipsRemaining = $scope.getChipTotal();
+
+      // Talk Smack
+      // $scope.playerTalk();
 
       // Game Over Trigger
    		if($scope.chipsRemaining === 0) {
    			$scope.screen = Board.setScreen('gameOver');
-        $scope.player.winner = ($scope.player.one.active) ? $scope.player.one.name : $scope.player.two.name;
+                    $scope.animate.activeBoard = false;
+
+                    $scope.player.winner = ($scope.player.one.active) ? $scope.player.one.name : $scope.player.two.name;
+                    $scope.player.one.winner = ($scope.player.one.active) ? true : false;
+                    $scope.player.two.winner = ($scope.player.two.active) ? true : false;
    		} 
 
-      // Computers Turn Trigger
-      if($scope.isComputerTurn()){
-        $scope.screen = Board.setScreen('computerTurn');
-        setTimeout(function(){
-          $scope.computerTurn();
-        },2000);
-      }
+              // Computers Turn Trigger
+              if($scope.isComputerTurn()){
+                $scope.screen = Board.setScreen('computerTurn');
+                setTimeout(function(){
+                  $scope.computerTurn();
+                },2000);
+              }
 
 
-      if(digest) { $scope.$digest() }
+              if(digest) { $scope.$digest() }
    	};
 
 
@@ -74,21 +80,25 @@ angular.module('pyramidApp')
       if(turn.row === undefined){
         turn = $scope.getRandTurn();
       }
-      console.log('conputers turn');
-      // Set Chips to False 
-      for(var x = 0; x < turn.chip; x++){
-        $scope.board.chips[turn.row][x].chip = false;
-      }
+
+        // Set Chips to False 
+        for(var x = 0; x < turn.chip; x++){
+          $scope.board.chips[turn.row][x].chip = false;
+          
+        }
+
+        console.log(turn);
        //turn.row is row while turn.chip is column
          //for loop has to be imposed as well so other elements may move as well .
 
-          console.log(turn.chip+"chip and row is "+turn.row+"x is "+x);
+          console.log(turn.chip+"chip and row is "+turn.row+"x is "+x+" lenght is "+$scope.board.chips[turn.row].length);
           
-          if(turn.row==0){
-            var lengthOfRow=1;
-          }else{
-            var lengthOfRow=turn.row*2;
-          }
+          var lengthOfRow = $scope.board.chips[turn.row].length;
+          // if(turn.row==0){
+          //   var lengthOfRow=1;
+          // }else{
+          //   var lengthOfRow=turn.row*2;
+          // }
           
           var xx=lengthOfRow-turn.chip;
           //xx++;
@@ -102,14 +112,16 @@ angular.module('pyramidApp')
           var temp=turn;
           
           $('.game-row[data-index='+turn.row+'] .chip-'+xx ).animate({
-            left: AbsoulteDifference+ 100,
+            left: AbsoulteDifference+ 95,
             opacity: 1
           }, 1000, "linear", function() {
               //now play opacity transition 
-              console.log(xx+"chip and row is "+turn.row);
+                  console.log(xx+"chip and row is "+turn.row);
             //   $('.game-row[data-index='+temp.row+'] .chip-' + xx).animate({opacity: 0},5000);
                 //moved from this has to be restored 
-               $scope.removeChips(turn.row, true);
+                  angular.element('.game-row[data-index='+turn.row+'] .chip-'+xx ).addClass('explode');
+                  $timeout(function(){$scope.removeChips(turn.row, xx, true);}, 200);
+               
           });
 
        //this has to be restored 
@@ -120,6 +132,11 @@ angular.module('pyramidApp')
 // ---------------- BOARD INFORMATION ----------------
     $scope.getChipTotal = function(){
       var chips = $scope.board.chips[0].length + $scope.board.chips[1].length + $scope.board.chips[2].length + $scope.board.chips[3].length;
+
+      for(var i = 0; i < (13-chips); i++) {
+        $scope.board.activeChipsIndicator[i] = false;
+      }
+
       return chips;
     }
 
@@ -132,7 +149,9 @@ angular.module('pyramidApp')
       }
     }
 
-
+    $scope.playerTalk = function() {
+        angular.element()
+    }
 
 // ---------------- RESET BOARD ----------------
    	$scope.resetChips = function(){
@@ -142,6 +161,7 @@ angular.module('pyramidApp')
       $scope.chipsRemaining = 13;
       angular.element('.droppable').removeClass('pep-dpa');
       $scope.removeChips();
+      console.log($scope.board);
 
    	}
 
@@ -154,14 +174,19 @@ angular.module('pyramidApp')
     
     // Creates new Board & Players
     $scope.board = Board.new();
-    $scope.player = Player.new();
+    $scope.player = $rootScope.player;
+
+    // Animations
+    $scope.animate = {};
+    $scope.animate.chipIndicatorIn = true;
+    $scope.animate.activeBoard = true;
 
     // Game Settings
     $scope.settings = {
-      computerMode : $rootScope.gameMode
+      computerMode : $rootScope.computerMode
     } 
 
     // Initialize Turn Selection
-    $scope.chooseTurn();
+    $scope.goFirst();
 
   });

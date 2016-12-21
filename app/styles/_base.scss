@@ -4,15 +4,19 @@
 /* Space out content a bit */
 html {
     height:100%;
+    overflow-x: hidden;
 }
 
 body {
-    padding-top: 5px;
+    padding-top: 20px;
     padding-bottom: 20px;
-    background: #E0CCA9;
+    background: url('../images/bg_1.png') repeat;
     position: relative;
     height:100%;
+    overflow-x: hidden;
+    font-family: "Oregano"
 }
+
 
 .glyphicon {
     font-size: 30px;
@@ -40,8 +44,22 @@ body {
 
 .jumbotron {
     text-align: center;
-    
+    padding-top: 78px;
     background-color: transparent;
+}
+
+// Animations
+
+.visible-fade {
+  display: block;
+  opacity: 1;
+  transition: opacity .5s linear;
+}
+
+.hide-fade {
+  display: none;
+  opacity: 0;
+  transition: visibility 0s .5s, opacity .5s linear;
 }
 
 

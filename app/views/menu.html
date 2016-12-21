@@ -1,14 +1,43 @@
-<div class="jumbotron game-title">
-  <h2 ng-click="">Pepe's <span>Pyramid</span></h2>
+
+<div class="col-xs-12 col-sm-6">
+	<div class="main-logo">
+		<img src="images/main-logo.png" alt="Pepe's Pyramid" class="animated ng-class: {'bounceInLeft' : animate.menu, 'bounceOutLeft' : !animate.menu}">
+	</div>
+
+	asdfasd
 </div>
 
-<div class="row menu-options clearfix pull-center">
-  <div class="row">
-<button ng-click="startGame(false)" class="btn btn-success btn-lg btn-start-game">2 Player</button></div>
-  <div class="row">
-<button ng-click="startGame(true)" class="btn btn-danger btn-lg btn-start-game">Play Pepe</button></div>
-<!-- <div pep2 class="chip"></div>
-<div pep2 class="chip"></div>
-<div pep2 class="chip"></div>
-<div pep2 class="chip"></div> -->
+
+<div class="col-xs-12 col-sm-6 animated ng-class: {'bounceInRight' : animate.menu, 'bounceOutRight' : !animate.menu}">
+	<div class="col-sm-5 game-overview menu-box">
+		<div class="game-overview-content menu-option clearfix hidden-xs"  >
+			<div class="menu-player-pic left">
+				<div class="player-pic-img player-pic-img-1 "></div>
+			</div>
+			<div class="menu-versus">vs</div>
+			<div class="menu-player-pic right">
+				<div class="player-pic-img player-pic-img-2 "></div>
+			</div>
+		</div>
+		<div class="play-game">
+			<button class="btn btn-success btn-play" ng-click="startGame(false)">Quick Match</button>
+		</div>
+	</div>
+
+	<div class="col-sm-2"></div>
+
+	<div class="col-sm-5 game-overview  menu-box" >
+		<div class="game-overview-content menu-option clearfix hidden-xs" >
+			<div class="menu-player-pic left">
+				<div class="player-pic-img player-pic-img-1 "></div>
+			</div>
+			<div class="menu-versus">vs</div>
+			<div class="menu-player-pic right">
+				<div class="player-pic-img player-pic-img-pepe "></div>
+			</div>
+		</div>		
+		<div class="play-game">
+			<button class="btn btn-danger btn-play" ng-click="startGame(true)">Campaign Mode</button>
+		</div>
+	</div>
 </div>

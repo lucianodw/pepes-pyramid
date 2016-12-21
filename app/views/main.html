@@ -1,26 +1,33 @@
 <div ng-show="appActive">
   <!-- App Navigation Row -->
-  <div class="row clearfix">
-    <div class="col-xs-2 col-md-2 pull-left"><a ng-href="#/" class="glyphicon glyphicon-arrow-left"></a></div>
-    <div class="col-xs-8 col-md-8  pull-center">
-      <p class="chip-display">{{chipsRemaining}} Chips Left</p>
-    </div>
-    <div class="col-xs-2 col-md-2 pull-right"><i class="glyphicon glyphicon-refresh pull-right" ng-click="chooseTurn()"></i></div>
-  </div>
+  <div class="row clearfix game-overview">
+    <div class="game-overview-content clearfix">
+          <div class="player-pic player-pic-left  ng-class: player.one.active ? 'active' : 'not-active'">
+          	<div class="player-pic-img player-pic-img-{{player.one.character.id}} ng-class:{'hinge': player.one.winner}"></div>
+          	<div class="player-talk-bubble left">{{player.one.talk}}<div class="arrow-up"></div></div>
+          </div>
 
+          <div class="col-xs-10 col-xs-offset-1 pull-center">
+            <div class="col-md-3 col-xs-6 pull-left">
+                <p class="player-display left hidden-xs hidden-xs">{{player.one.character.name}}</p>
+            </div>
+            <div class="col-md-6 hidden-xs pull-left animated ng-class: {'tada': animate.chipIndicatorIn} ">
+            		<div ng-repeat="obj in board.activeChipsIndicator track by $index" class="chip-peg ng-class: {'active' : obj.chip}"></div>
+            </div>
+            <div class="col-md-3 col-xs-6 pull-right">
+                <p class="player-display right hidden-xs">{{player.two.character.name}}</p>
+              </div>
+          </div>
 
-  <!-- Player Row -->
-  <div class="row player-row clearfix">
-    <div class="col-md-6 col-xs-6 pull-left">
-      <p class="player-display ng-class: player.one.active ? 'active' : 'not-active'">{{player.one.name}}</p>
-    </div>
-    <div class="col-md-6 col-xs-6 pull-right">
-      <p class="player-display ng-class: player.two.active ? 'active' : 'not-active'">{{player.two.name = (settings.computerMode) ? 'Pepe' : player.two.name}}</p>
+          <div class="player-pic player-pic-right ng-class: player.two.active ? 'active' : 'not-active ">
+          	<div class="player-pic-img  player-pic-img-{{player.two.character.id}} ng-class:{'hinge': player.two.winner}"></div>
+          	<div class="player-talk-bubble right">{{player.two.talk}}<div class="arrow-up"></div></div>
+          </div>
     </div>
   </div>
 
   <!-- Game Board Row -->
-  <div class="jumbotron clearfix">
+  <div class="jumbotron clearfix animated ng-class:{'bounceIn': animate.activeBoard, 'bounceOut': !animate.activeBoard}">
     <div class="game-board col-md-10 col-xs-10">
 
       <div class="row game-row clearfix r1" data-index="0">
@@ -50,10 +57,29 @@
     </div>
     <div class="droppable d2 col-md-2 col-xs-2"></div>
 
-      </div>
+  </div>
+
+  <div>
+    
+  </div>
+  
+  <div class="row clearfix game-overview">
+    
+  </div>
+
+  <!-- App Navigation Row -->
+  <div class="row clearfix game-overview">
+    <div class="game-overview-content clearfix">
+          <div class="col-xs-2 col-md-2 pull-left"><a ng-href="#/" class="glyphicon glyphicon-arrow-left"></a></div>
+          <div class="col-xs-8 col-md-8  pull-center">
+            <p class="chip-display">{{chipsRemaining}} Chips Left</p>
+          </div>
+          <div class="col-xs-2 col-md-2 pull-right"><i class="glyphicon glyphicon-refresh pull-right" ng-click="chooseTurn()"></i></div>
+    </div>
+  </div>
 
     <!-- Game Over Screen -->
-    <div class="overlay" ng-show="screen.gameOver"></div>
+<!--     <div class="overlay" ng-show="screen.gameOver"></div>
     <div class="game-over pull-center" ng-show="screen.gameOver">
       <div class="row ">
         <h3>Game Over!</h3>
@@ -65,7 +91,7 @@
         <button class="btn btn-lg btn-success" ng-click="chooseTurn()"><i class="glyphicon glyphicon-refresh"></i> Replay</button>
       </div>
      
-    </div>
+    </div> -->
 
     <!-- Go First Screen -->
     <div class="overlay" ng-show="screen.goFirst"></div>
@@ -74,7 +100,7 @@
         <h3>Who would you like to go first?</h3>
       </div>
       <div class="row"> 
-        <button class="btn btn-lg btn-success" ng-click="goFirst()">{{player.one.name}}</button> <button class="btn btn-lg btn-success" ng-click="goSecond()">{{player.two.name = (settings.computerMode) ? 'Pepe' : player.two.name}}</button>
+        <button class="btn btn-lg btn-success" ng-click="goFirst()">{{player.one.character.name}}</button> <button class="btn btn-lg btn-success" ng-click="goSecond()">{{player.two.characters.name = (settings.computerMode) ? 'Pepe' : player.two.characters.name}}</button>
       </div>
      
     </div>

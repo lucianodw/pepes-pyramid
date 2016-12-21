@@ -8,6 +8,7 @@ angular.module('pyramidApp')
           return {
             currRow : '',
             activeChips : '', 
+            activeChipsIndicator: [{chip:true}, {chip:true}, {chip:true}, {chip:true}, {chip:true}, {chip:true}, {chip:true}, {chip:true}, {chip:true}, {chip:true}, {chip:true}, {chip:true}, {chip:true}],
             chips : [ 
               [ {chip: true} ],
               [ {chip: true}, {chip: true} ],

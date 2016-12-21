@@ -18,3 +18,111 @@
         margin: 20px 0;
     }
 }
+
+.game-overview-content {
+    &.menu-option {
+        padding-bottom: 25px;
+    }
+}
+
+
+.menu-box {
+    cursor:pointer;
+}
+
+.player-description {
+    color: #fff;
+    font-family: "Oregano";
+    font-size: 18px;
+    margin-top: 110px;
+    text-align: center;
+}
+
+.menu-player-pic {
+    background: #000 none repeat scroll 0 0;
+    border-radius: 50px;
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+    background: transparent url("../images/bg_4.png") repeat scroll 0 0;
+    box-shadow: 0 0 2px #000;
+    float: left;
+    position: relative;
+}
+
+.menu-versus {
+    color: #fff;
+    float: left;
+    font-family: "Oregano";
+    font-size: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+.btn-play {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.player-pic-img {
+            background: #000 none repeat scroll 0 0;
+            border-radius: 50px;
+            height: 80px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 80px;
+            background: transparent url("../images/bg_3.png") repeat scroll 0 0;
+            box-shadow: 0 0 2px #000;
+    }
+
+    .player-pic-img-1 {
+        background: transparent url("../images/character_1.png") repeat scroll center center;
+    }
+    .player-pic-img-2 {
+        background: transparent url("../images/character_2.png") repeat scroll center center;
+    }
+    .player-pic-img-3 {
+        background: transparent url("../images/character_3.png") repeat scroll center center;
+    }
+    .player-pic-img-4 {
+        background: transparent url("../images/character_4.png") repeat scroll center center;
+    }
+    .player-pic-img-default {
+        background: transparent url("../images/character_default.png") repeat scroll center center;
+    }
+    .player-pic-img-pepe {
+        background: transparent url("../images/character_pepe.png") repeat scroll center center;
+    }
+
+    .main-logo {
+        text-align: center;
+
+        img {
+            width: 300px;
+        }
+    }
+
+    .character-container {
+        margin-top: 25px;
+
+        h2 {
+            color: #fff;
+            text-shadow: 1px 1px 1px #000;
+            font-family: "Oregano"
+        }
+
+        .menu-player-pic:hover {
+            background: #4d5871;
+            cursor: pointer;
+        }
+    }
+
+.player-pic-default {
+    color: #fff;
+    font-size: 45px;
+    padding-top: 20px;
+    position: relative;
+    text-align: center;
+    z-index: 10;
+}

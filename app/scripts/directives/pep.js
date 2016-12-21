@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('pyramidApp')
-  .directive('pep', function () {
+  .directive('pep', function ($timeout) {
     return {
       restrict: 'A',
       link: function (scope, elem, attrs) {
@@ -32,7 +32,6 @@ angular.module('pyramidApp')
                }      
           },
           stop: function(ev, obj){
-            console.log(ev);
             
             var row = obj.$container.parent();
             this.currRow = row.attr('data-index');
@@ -57,18 +56,13 @@ angular.module('pyramidApp')
               }  
 
             } else {
-
+                angular.element('.active-chip').addClass('explode');
                 angular.element('.chip').removeClass('active-chip');
-                for(var x = this.currChip; x < totalChips; x++){
-                    scope.board.chips[this.currRow][x].chip = false;
-                    console.log(scope.offsetDirection);
-                    angular.element('.game-row[data-index='+this.currRow+'] .chip-' + x).removeClass('active-chip');
-                    
-                }
-
-              scope.board.currRow = this.currRow;
-              scope.board.activeChips = angular.element('.active-chip');
-              scope.removeChips(scope.board.currRow, true);
+                scope.board.currRow = this.currRow;
+                var currChip = this.currChip;
+                console.log('explode!');
+                $timeout(function(){scope.removeChips(scope.board.currRow, currChip, true);}, 200);
+                
               
               }
 
