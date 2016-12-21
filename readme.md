@@ -11,4 +11,4 @@ A simple strategy game where you can play against each other or against a comput
 - Leaving your opponent with a 3,2,1 pattern is a winning combination... think about it.  
 
 ### Play the Game
-[Pepe's Pyramid Game](www.pepespyramid.com)
+[Pepe's Pyramid Game](http://www.pepespyramid.com)
