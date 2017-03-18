@@ -188,5 +188,4 @@ angular.module('pyramidApp')
 
     // Initialize Turn Selection
     $scope.goFirst();
-
   });
